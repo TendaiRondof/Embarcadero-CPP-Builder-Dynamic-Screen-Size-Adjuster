@@ -23,15 +23,6 @@ void __fastcall TForm1::FormResize(TObject *Sender)
 	XFactor = Form1->ClientWidth/DesinWidth;
 	YFactor = Form1->ClientHeight/DesinHeight;
 
-	Label1->Text = YFactor;
-	Label2->Text = XFactor;
-
-	Label5->Text = DesinWidth;
-	Label7->Text = DesinHeight;
-
-	Label6->Text = Form1->ClientWidth;
-	Label8->Text = Form1->ClientHeight;
-
 	for (int comp=0; comp < Form1->ComponentCount; comp++) {
 		current_comp = dynamic_cast<TControl*>(Form1->Components[comp]);
 		if (current_comp != 0) {
@@ -39,7 +30,7 @@ void __fastcall TForm1::FormResize(TObject *Sender)
 			current_comp->Position->Y *= YFactor;
 			current_comp->Width *= XFactor;
 			current_comp->Height *= YFactor;
-		
+
 			current_comp->Repaint();
 		}
 	}
