@@ -1,15 +1,3 @@
-//---------------------------------------------------------------------------
-
-#include <fmx.h>
-#pragma hdrstop
-
-#include "Unit1.h"
-//---------------------------------------------------------------------------
-
-#pragma package(smart_init)
-#pragma resource "*.fmx"
-TForm1 *Form1;
-
 //Dimensions at Design time
 float DesinWidth =  400;
 float DesinHeight = 800;
@@ -17,6 +5,7 @@ float DesinHeight = 800;
 void __fastcall TForm1::FormResize(TObject *Sender)
 {
 	TControl *current_comp;
+	TPresentedTextControl *dummyTextComp;
 
 	float XFactor,YFactor;
 
@@ -31,6 +20,11 @@ void __fastcall TForm1::FormResize(TObject *Sender)
 			current_comp->Width *= XFactor;
 			current_comp->Height *= YFactor;
 
+			dummyTextComp = dynamic_cast<TPresentedTextControl*>(current_comp);
+
+			if(dummyTextComp != 0)
+				dummyTextComp->TextSettings->Font->Size *= (XFactor+YFactor)/2;
+
 			current_comp->Repaint();
 		}
 	}
@@ -38,5 +32,3 @@ void __fastcall TForm1::FormResize(TObject *Sender)
 	DesinWidth = Form1->ClientWidth;
 	DesinHeight = Form1->ClientHeight;
 }
-//---------------------------------------------------------------------------
-
