@@ -23,7 +23,7 @@ void __fastcall TForm1::FormResize(TObject *Sender)
 			dummyTextComp = dynamic_cast<TPresentedTextControl*>(current_comp);
 
 			if(dummyTextComp != 0)
-				dummyTextComp->TextSettings->Font->Size *= (XFactor+YFactor)/2;
+				dummyTextComp->TextSettings->Font->Size *= XFactor;
 
 			current_comp->Repaint();
 		}
